@@ -1,0 +1,46 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "description": "done task",
+      "status": "todo",
+      "createdAt": "9/17/2024, 6:07:29 PM",
+      "updatedAt": "9/18/2024, 7:10:11 PM"
+    },
+    {
+      "id": 2,
+      "description": "This is a task",
+      "status": "todo",
+      "createdAt": "9/17/2024, 6:07:42 PM",
+      "updatedAt": "9/17/2024, 6:07:42 PM"
+    },
+    {
+      "id": 3,
+      "description": "A new task",
+      "status": "todo",
+      "createdAt": "9/18/2024",
+      "updatedAt": "9/18/2024"
+    },
+    {
+      "id": 4,
+      "description": "A new task",
+      "status": "todo",
+      "createdAt": "9/18/2024",
+      "updatedAt": "9/18/2024"
+    },
+    {
+      "id": 5,
+      "description": "A new task",
+      "status": "todo",
+      "createdAt": "4:12:11 PM",
+      "updatedAt": "4:12:11 PM"
+    },
+    {
+      "id": 6,
+      "description": "A new task",
+      "status": "todo",
+      "createdAt": "9/18/2024, 4:12:27 PM",
+      "updatedAt": "9/18/2024, 4:12:27 PM"
+    }
+  ]
+}
