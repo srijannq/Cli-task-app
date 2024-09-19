@@ -43,7 +43,7 @@ yargs(process.argv.slice(2))
     'list task by status',
     (yargs) => {
       return yargs.positional('status', {
-        describe: 'Lists the task as per status',
+        describe: 'Lists the task as per status/list all the tasks',
         type: 'string',
       })
     },
@@ -81,7 +81,7 @@ yargs(process.argv.slice(2))
   )
   .command(
     'update <id> <description>',
-    'change the description of the task',
+    'change the description of the task identified by id',
     (yargs) => {
       return yargs
         .positional('id', {
@@ -99,7 +99,7 @@ yargs(process.argv.slice(2))
   )
   .command(
     'mark <id> <status>',
-    'change the status of the task',
+    'change the status of the task identified by id',
     (yargs) => {
       return yargs
         .positional('id', {
