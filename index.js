@@ -1,15 +1,123 @@
 #!/usr/bin/env node
 
-import { getAll, addTasks, updateTaskStatus } from "./controllers/tasks.js";
+import {
+  getAll,
+  addTasks,
+  deleteTask,
+  getTodo,
+  getInProgress,
+  getDone,
+  updateTask,
+  markDone,
+  markProgress,
+} from './controllers/tasks.js'
+import yargs from 'yargs'
 
-const command = process.argv[2];
+const listNotes = (tasks) => {
+  tasks.forEach((task) => {
+    console.log('Description of your task: ', task.description)
+    console.log('Your task status: ', task.status)
+    console.log('Created At: ', task.createdAt)
+    console.log('Last updated At: ', task.updatedAt)
+    console.log('\n')
+  })
+}
 
-if (command === "getAll") {
-  console.log(getAll());
-}
-if (command === "add") {
-  console.log(addTasks(process.argv[3]));
-}
-if (command === "update") {
-  updateTaskStatus(+process.argv[3], process.argv[4]);
-}
+yargs(process.argv.slice(2))
+  .command(
+    'add <task>',
+    'add a new task with description',
+    (yargs) => {
+      return yargs.positional('task', {
+        describe: 'The content of the task you want to create',
+        type: 'string',
+      })
+    },
+    (argv) => {
+      addTasks(argv.task)
+    },
+  )
+
+  .command(
+    'list [status]',
+    'list task by status',
+    (yargs) => {
+      return yargs.positional('status', {
+        describe: 'Lists the task as per status',
+        type: 'string',
+      })
+    },
+    (argv) => {
+      if (argv.status === 'todo') {
+        const tasks = getTodo()
+        if (tasks.length === 0) {
+          console.log('No such tasks to show')
+        } else {
+          listNotes(tasks)
+        }
+      } else if (!argv.status) {
+        const { notes } = getAll()
+        if (notes.length === 0) {
+          console.log('No tasks to show')
+        } else {
+          listNotes(notes)
+        }
+      } else if (argv.status === 'in-progress') {
+        const tasks = getInProgress()
+        if (tasks.length === 0) {
+          console.log('No such tasks to show')
+        } else {
+          listNotes(tasks)
+        }
+      } else if (argv.status === 'done') {
+        const tasks = getDone()
+        if (tasks.length === 0) {
+          console.log('No such tasks to show')
+        } else {
+          listNotes(tasks)
+        }
+      }
+    },
+  )
+  .command(
+    'update <id> <description>',
+    'change the description of the task',
+    (yargs) => {
+      return yargs
+        .positional('id', {
+          description: 'Id of the task to be updated',
+          type: 'number',
+        })
+        .positional('description', {
+          description: 'change the description of the task.',
+          type: 'string',
+        })
+    },
+    (argv) => {
+      updateTask(argv.id, argv.description)
+    },
+  )
+  .command(
+    'mark <id> <status>',
+    'change the status of the task',
+    (yargs) => {
+      return yargs
+        .positional('id', {
+          description: 'Id of the task to be updated',
+          type: 'number',
+        })
+        .positional('status', {
+          description: 'change the status of the task.',
+          type: 'string',
+        })
+    },
+    (argv) => {
+      if (argv.status === 'done') {
+        markDone(argv.id)
+      } else {
+        markProgress(argv.id)
+      }
+    },
+  )
+
+  .parse()
