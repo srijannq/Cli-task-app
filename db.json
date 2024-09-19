@@ -1,18 +1,3 @@
 {
-  "notes": [
-    {
-      "id": 1,
-      "description": "Do programming",
-      "status": "done",
-      "createdAt": "9/19/2024, 3:39:37 PM",
-      "updatedAt": "9/19/2024, 3:41:53 PM"
-    },
-    {
-      "id": 2,
-      "description": "Do aptitutde",
-      "status": "in progress",
-      "createdAt": "9/19/2024, 3:40:57 PM",
-      "updatedAt": "9/19/2024, 3:41:16 PM"
-    }
-  ]
+  "notes": []
 }

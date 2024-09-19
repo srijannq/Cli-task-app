@@ -119,5 +119,18 @@ yargs(process.argv.slice(2))
       }
     },
   )
+  .command(
+    'delete <id>',
+    'delete the task with specified id',
+    (yargs) => {
+      return yargs.positional('id', {
+        description: 'The id of the task to be deleted',
+        type: 'number',
+      })
+    },
+    (argv) => {
+      deleteTask(argv.id)
+    },
+  )
 
   .parse()
